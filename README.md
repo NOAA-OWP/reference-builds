@@ -1,6 +1,6 @@
 # Reference-Builds
 
-This repo is meant to take OCONUS reference data products and convert them into reference-files that can be used in the [NGWPC/nhf-builds](https://github.com/NGWPC/nhf-builds/) Repository
+This repo is meant to take OCONUS reference data products and convert them into reference-files that can be used in the [NOAA-OWP/hydrofabric-builds](https://github.com/noaa-owp/hydrofabric-builds/) Repository
 
 ## Data sources:
 ### Science Base
@@ -23,23 +23,32 @@ Prior to reference 0.1.6, GeoGlows v2 was used for the *AK* reference and the co
 
 the `catchment.parquet` and `streams_mapping.gpkg` files are required from each VPU
 
-### saved location
+### Setup from Archive
+An archive called `reference_builds_data.tar` contains all needed data. Extract this file in repo root and rename the folder to `data`. This includes all data for NHDPlusHR, GeoGlows, and USGS reference data.
 
-This data only needs to be unzipped in it's "domain" folder for it to be picked up by the example scripts
-![alt text](docs/img/hierarchy.png)
+### Data Location
+This data only needs to be unzipped in it's `data/domain` folder for it to be picked up by the example scripts. The folder `data` is required
+
+![alt text](docs/img/folder_hierarchy.png)
 
 
 ## Quick Start
 
-All dependencies can be installed through
+All dependencies can be installed through:
 ```
 uv sync
 ```
 
-and the example configs can be used to create the references once the data is downloaded
+and the example configs can be used to create the references once the data is downloaded:
 
 ```
 uv run python builds/build_reference.py --config config/example_prvi.yaml
 uv run python builds/build_reference.py --config config/example_hi.yaml
 uv run python builds/build_reference.py --config config/example_ak.yaml
+```
+
+Run test suite with:
+
+```
+pytest tests
 ```
